@@ -4,9 +4,64 @@
 #include "catch.hpp"
 //------------------------------
 
-// Put the assignment code here
-
 class Quaternion {
+
+private:
+double quart1;
+double quart2;
+double quart3;
+double quart4;
+
+public:
+Quaternion(double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0)
+{
+  quart1 = a;
+  quart2 = b;
+  quart3 = c;
+  quart4 = d;
+};
+
+bool operator== (const Quaternion &e) const
+{
+  if((e.quart1 == this-> quart1) && (e.quart2 == this-> quart2) && (e.quart3 == this-> quart3) && (e.quart4 == this-> quart4))
+  return true;
+  
+  else
+  return false;
+}
+
+Quaternion operator+ (const Quaternion &g)
+{
+  Quaternion y;
+  
+  y.quart1 = quart1 + g.quart1;
+  y.quart2 = quart2 + g.quart2;
+  y.quart3 = quart3 + g.quart3;
+  y.quart4 = quart4 + g.quart4;
+
+  return y;
+}
+
+Quaternion operator- (const Quaternion &u)
+{
+  Quaternion i;
+
+  i.quart1 = quart1 - u.quart1;
+  i.quart2 = quart2 - u.quart2;
+  i.quart3 = quart3 - u.quart3;
+  i.quart4 = quart4 - u.quart4;
+  
+  return i;
+}
+
+Quaternion operator* (double l)
+{
+
+  Quaternion mult(quart1*l, quart2*l, quart3*l, quart4*l);
+  
+  return mult;
+}
+
 };
 
 //------------------------------
