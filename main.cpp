@@ -30,7 +30,7 @@ bool operator== (const Quaternion &e) const
   return false;
 }
 
-Quaternion operator+ (const Quaternion &g)
+Quaternion operator+ (const Quaternion &g) const
 {
   Quaternion y;
   
@@ -42,7 +42,7 @@ Quaternion operator+ (const Quaternion &g)
   return y;
 }
 
-Quaternion operator- (const Quaternion &u)
+Quaternion operator- (const Quaternion &u) const
 {
   Quaternion i;
 
@@ -54,15 +54,21 @@ Quaternion operator- (const Quaternion &u)
   return i;
 }
 
-Quaternion operator* (double l)
+Quaternion operator* (double l)const
 {
-
   Quaternion mult(quart1*l, quart2*l, quart3*l, quart4*l);
   
   return mult;
 }
-
+friend Quaternion operator* (double l, const Quaternion &s);
 };
+
+Quaternion operator* (double l, const Quaternion &s)
+{
+  Quaternion mult(l*s.quart1, l*s.quart2, l*s.quart3, l*s.quart4);
+  
+  return mult;
+}
 
 //------------------------------
 //   DO NOT MODIFY TEST CASES
@@ -91,4 +97,4 @@ TEST_CASE( "Assignment" ) {
         REQUIRE( (q * 2.0) == r );
     }
 }
-//------------------------------
+//------------------------------  
